@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"d:\\\\DEV\\\\Web\\\\mdtronix\" remote -v)",
+      "Bash(git -C \"d:\\\\DEV\\\\Web\\\\mdtronix\" remote set-url origin https://github.com/mdtronixlab/mdtronix-web.git)",
+      "Bash(git -C \"d:\\\\DEV\\\\Web\\\\mdtronix\" config --list)",
+      "Bash(Select-String \"credential|user\")",
+      "PowerShell(git credential reject)",
+      "PowerShell(git credential-manager github logout)",
+      "PowerShell(git credential-manager github list)",
+      "PowerShell(git credential-manager github logout daaktarg)"
+    ]
+  }
+}

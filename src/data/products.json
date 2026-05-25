@@ -1,0 +1,18 @@
+[
+  {
+    "id": "water-tank",
+    "badge": "Smart Product",
+    "title": "Water Tank Level Controller",
+    "description": "A compact, intelligent module that automates your water pump — keeping your tank full, your motor safe, and your phone informed.",
+    "features": [
+      { "icon": "water", "label": "Precision Level Display" },
+      { "icon": "smartphone", "label": "Mobile App Control" },
+      { "icon": "display_settings", "label": "OLED Display" },
+      { "icon": "gpp_bad", "label": "Dry-Run Protection" },
+      { "icon": "tune", "label": "Auto / Manual Mode" },
+      { "icon": "electrical_services", "label": "Starter & Capacitor Support" },
+      { "icon": "home_iot_device", "label": "MDtronix Smart Home Ready" }
+    ],
+    "tags": ["WiFi", "OLED Display", "Auto Mode", "IoT"]
+  }
+]

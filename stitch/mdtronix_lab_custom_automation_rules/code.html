@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom Automation Rules | MDtronix Lab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#c1c7d2",
+                        "surface-container-highest": "#32353b",
+                        "on-error": "#690005",
+                        "on-primary-container": "#003a6a",
+                        "on-surface-variant": "#c0c7d4",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "on-primary-fixed-variant": "#004882",
+                        "surface-dim": "#101419",
+                        "on-secondary-container": "#afb5c1",
+                        "secondary-container": "#414751",
+                        "primary-container": "#56a5ff",
+                        "on-tertiary-container": "#4f3300",
+                        "on-tertiary-fixed": "#291800",
+                        "inverse-surface": "#e0e2ea",
+                        "tertiary-container": "#da9400",
+                        "surface": "#101419",
+                        "primary-fixed": "#d3e4ff",
+                        "outline": "#8b919d",
+                        "plasma-blue": "#007AFF",
+                        "surface-container-lowest": "#0b0e14",
+                        "glass-stroke": "rgba(255, 255, 255, 0.12)",
+                        "on-secondary": "#2b313a",
+                        "surface-tint": "#a3c9ff",
+                        "surface-container": "#1c2025",
+                        "secondary-fixed": "#dde3ee",
+                        "primary": "#a3c9ff",
+                        "tertiary": "#ffba49",
+                        "void-black": "#0A0C10",
+                        "surface-container-low": "#181c21",
+                        "surface-container-high": "#272a30",
+                        "tertiary-fixed": "#ffddb1",
+                        "slate-silver": "#E2E8F0",
+                        "surface-bright": "#36393f",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#2d3136",
+                        "on-secondary-fixed": "#161c24",
+                        "on-primary-fixed": "#001c38",
+                        "on-primary": "#00315c",
+                        "outline-variant": "#414752",
+                        "surface-variant": "#32353b",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "inverse-primary": "#0060aa",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#442b00",
+                        "on-surface": "#e0e2ea",
+                        "tertiary-fixed-dim": "#ffba49",
+                        "secondary-fixed-dim": "#c1c7d2",
+                        "background": "#101419",
+                        "on-background": "#e0e2ea",
+                        "on-secondary-fixed-variant": "#414751"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "margin-mobile": "16px",
+                        "stack-sm": "12px",
+                        "gutter": "24px",
+                        "stack-lg": "48px",
+                        "base": "8px",
+                        "stack-md": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0A0C10; }
+        .glass-card {
+            background: rgba(28, 32, 37, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+        .shimmer-btn:hover::after {
+            left: 100%;
+            top: 100%;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md antialiased min-h-screen pb-20">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-glass-stroke shadow-md shadow-plasma-blue/10">
+<div class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<a class="font-headline-lg text-primary tracking-tighter flex items-center gap-2" href="#">
+<img alt="Logo" class="h-8 w-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_B9RfuwAb7Fx1yeh8rjiStL-CDjovG0TSGmmIBc7OyywWlvyAOjmDooWMtDKgbMhnijygRSCHKpVK5Keux_0vKe0eDoYmsa7dklDpvRE8FdB62PGYra93kMxvZyq53wL6Hadl3f09r6O0FF2Q1d1OXG7bCo3s29amHoxT_rki9k1LEaZ-_cAALnwHC1LYnejAClNUcozgCNCE49WqIRM37MRrIoAcvgBkhnVZJRbncKNMRj9bKqauooUF3XLe-4xiRBhOfChgAI8J"/>
+                    MDtronix Lab
+                </a>
+</div>
+<nav class="hidden md:flex items-center gap-stack-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Products</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Services</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Support</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-xl font-bold active:scale-95 transition-transform shimmer-btn">
+                Get Started
+            </button>
+</div>
+</header>
+<main class="mt-32 max-w-4xl mx-auto px-gutter">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-on-surface-variant mb-stack-md font-label-sm uppercase tracking-widest">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">home</span> Dashboard
+            </a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary">Custom Automations</span>
+</div>
+<!-- Page Header -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-xl text-headline-xl mb-4 bg-gradient-to-r from-primary to-plasma-blue bg-clip-text text-transparent">
+                Create New Automation
+            </h1>
+<p class="text-on-surface-variant text-body-md max-w-xl">
+                Define complex, intelligent behaviors for your home environment using visual logic blocks.
+            </p>
+</div>
+<!-- Rule Name Input -->
+<div class="mb-stack-lg">
+<label class="block text-primary font-label-sm uppercase mb-3 px-1">Automation Name</label>
+<input class="w-full bg-surface-container border border-glass-stroke rounded-xl px-stack-md py-4 text-headline-lg-mobile focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-on-surface-variant/30" placeholder="e.g. Morning Focus Routine" type="text"/>
+</div>
+<div class="space-y-stack-md relative">
+<!-- Connector Line -->
+<div class="absolute left-10 top-16 bottom-16 w-0.5 bg-gradient-to-b from-primary/50 via-tertiary/50 to-primary/50 hidden md:block"></div>
+<!-- TRIGGER SECTION (IF) -->
+<section class="glass-card rounded-xl p-stack-md md:p-stack-lg relative z-10">
+<div class="flex items-start gap-6">
+<div class="hidden md:flex flex-shrink-0 w-12 h-12 bg-primary-container/20 rounded-full items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-headline-lg font-headline-lg flex items-center gap-3">
+<span class="text-primary">IF</span> This Happens
+                            </h2>
+<button class="text-primary hover:bg-primary/10 px-3 py-1 rounded-lg text-sm transition-colors border border-primary/20">
+                                + Add Condition
+                            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div>
+<label class="block text-on-surface-variant font-label-sm mb-2">Trigger Category</label>
+<select class="w-full bg-surface-container-low border border-glass-stroke rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary outline-none">
+<option>Time-Based Schedule</option>
+<option>Sensor Activity</option>
+<option>Device State Change</option>
+<option>Geofence / Location</option>
+</select>
+</div>
+<div>
+<label class="block text-on-surface-variant font-label-sm mb-2">Specific Time</label>
+<input class="w-full bg-surface-container-low border border-glass-stroke rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-primary outline-none" type="time" value="07:00"/>
+</div>
+</div>
+<div class="mt-stack-md p-4 bg-surface-container-lowest/50 border border-glass-stroke border-dashed rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">calendar_today</span>
+<span class="text-body-md text-secondary">Repeat on Weekdays (Mon-Fri)</span>
+</div>
+<button class="text-error text-sm font-medium">Remove</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ACTION SECTION (THEN) -->
+<section class="glass-card rounded-xl p-stack-md md:p-stack-lg relative z-10">
+<div class="flex items-start gap-6">
+<div class="hidden md:flex flex-shrink-0 w-12 h-12 bg-tertiary-container/20 rounded-full items-center justify-center border border-tertiary/30">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-headline-lg font-headline-lg flex items-center gap-3">
+<span class="text-tertiary">THEN</span> Do This
+                            </h2>
+<button class="text-tertiary hover:bg-tertiary/10 px-3 py-1 rounded-lg text-sm transition-colors border border-tertiary/20">
+                                + Add Action
+                            </button>
+</div>
+<div class="space-y-4">
+<!-- Action Item 1 -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md p-4 bg-surface-container-high/30 rounded-xl border border-glass-stroke">
+<div class="md:col-span-1">
+<label class="block text-on-surface-variant font-label-sm mb-2">Target System</label>
+<select class="w-full bg-surface-container-low border border-glass-stroke rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-tertiary outline-none">
+<option>Climate (HVAC)</option>
+<option>Smart Lighting</option>
+<option>Security Hub</option>
+<option>Motorized Blinds</option>
+</select>
+</div>
+<div class="md:col-span-1">
+<label class="block text-on-surface-variant font-label-sm mb-2">Target Device</label>
+<select class="w-full bg-surface-container-low border border-glass-stroke rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-tertiary outline-none">
+<option>Main Hall AC</option>
+<option>Bedroom Split</option>
+</select>
+</div>
+<div class="md:col-span-1">
+<label class="block text-on-surface-variant font-label-sm mb-2">Temperature: 22°C</label>
+<input class="w-full h-2 bg-surface-container-lowest rounded-lg appearance-none cursor-pointer accent-tertiary mt-4" max="30" min="16" type="range" value="22"/>
+</div>
+</div>
+<!-- Action Item 2 -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md p-4 bg-surface-container-high/30 rounded-xl border border-glass-stroke">
+<div class="md:col-span-1">
+<label class="block text-on-surface-variant font-label-sm mb-2">Target System</label>
+<select class="w-full bg-surface-container-low border border-glass-stroke rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-tertiary outline-none">
+<option selected="">Smart Lighting</option>
+<option>Climate (HVAC)</option>
+</select>
+</div>
+<div class="md:col-span-1">
+<label class="block text-on-surface-variant font-label-sm mb-2">Scene/Action</label>
+<select class="w-full bg-surface-container-low border border-glass-stroke rounded-lg px-4 py-3 text-on-surface focus:ring-1 focus:ring-tertiary outline-none">
+<option>Soft Morning Glow</option>
+<option>Full Bright</option>
+<option>Off</option>
+</select>
+</div>
+<div class="flex items-center justify-between md:col-span-1 pt-6">
+<span class="text-body-md">Transition Duration</span>
+<div class="flex items-center bg-surface-container-lowest px-3 py-2 rounded-lg border border-glass-stroke">
+<span class="font-label-sm text-primary">5m</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Actions -->
+<div class="mt-stack-lg flex flex-col md:flex-row items-center justify-between gap-stack-md p-6 glass-card rounded-2xl border-t-2 border-primary/20">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-sm text-on-surface-variant max-w-xs">This rule will run locally on your hub, ensuring 99.9% uptime even without internet.</p>
+</div>
+<div class="flex items-center gap-4 w-full md:w-auto">
+<button class="flex-1 md:flex-none border border-glass-stroke text-on-surface px-8 py-3 rounded-xl hover:bg-surface-bright/20 transition-all font-bold">
+                    Cancel
+                </button>
+<button class="flex-1 md:flex-none bg-primary text-on-primary px-10 py-3 rounded-xl font-bold active:scale-95 transition-transform shadow-lg shadow-plasma-blue/40 shimmer-btn">
+                    Save Rule
+                </button>
+</div>
+</div>
+</main>
+<!-- Visual Background Atmosphere -->
+<div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-20">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[160px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-tertiary rounded-full blur-[160px]"></div>
+</div>
+<!-- Footer Shell -->
+<footer class="bg-void-black w-full py-stack-lg border-t border-glass-stroke mt-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-md px-gutter max-w-container-max mx-auto">
+<div class="col-span-1">
+<div class="font-headline-lg text-primary mb-4">MDtronix Lab</div>
+<p class="text-on-surface-variant font-body-md">Intelligence Redefined.</p>
+</div>
+<div class="col-span-1">
+<h4 class="text-on-surface font-bold mb-4">Product</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Installation Guide</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Hardware Specs</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-on-surface font-bold mb-4">Support</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Contact Us</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Knowledge Base</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-on-surface font-bold mb-4">Legal</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="text-center mt-stack-lg pt-stack-md border-t border-glass-stroke/10 text-on-surface-variant font-label-sm">
+            © 2024 MDtronix Lab. Intelligence Redefined.
+        </div>
+</footer>
+<script>
+        // Micro-interaction for range slider
+        const ranges = document.querySelectorAll('input[type="range"]');
+        ranges.forEach(range => {
+            range.addEventListener('input', (e) => {
+                const label = e.target.parentElement.querySelector('label');
+                if (label && label.innerText.includes('Temperature')) {
+                    label.innerText = `Temperature: ${e.target.value}°C`;
+                }
+            });
+        });
+
+        // Add a subtle parallax to the background glows based on mouse
+        document.addEventListener('mousemove', (e) => {
+            const glows = document.querySelectorAll('div[class*="blur-[160px]"]');
+            const x = (e.clientX - window.innerWidth / 2) / 50;
+            const y = (e.clientY - window.innerHeight / 2) / 50;
+            glows.forEach((glow, index) => {
+                const factor = index === 0 ? 1 : -1;
+                glow.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+            });
+        });
+    </script>
+</body></html>

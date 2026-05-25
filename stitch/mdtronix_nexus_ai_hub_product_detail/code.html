@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MDtronix Nexus Hub | Intelligence Redefined</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffba49",
+                        "slate-silver": "#E2E8F0",
+                        "outline": "#8b919d",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#ffddb1",
+                        "on-secondary": "#2b313a",
+                        "surface-tint": "#a3c9ff",
+                        "on-secondary-container": "#afb5c1",
+                        "on-primary-fixed-variant": "#004882",
+                        "inverse-on-surface": "#2d3136",
+                        "secondary-fixed": "#dde3ee",
+                        "on-primary": "#00315c",
+                        "tertiary-fixed-dim": "#ffba49",
+                        "secondary-fixed-dim": "#c1c7d2",
+                        "outline-variant": "#414752",
+                        "inverse-surface": "#e0e2ea",
+                        "secondary": "#c1c7d2",
+                        "background": "#101419",
+                        "surface-variant": "#32353b",
+                        "on-tertiary": "#442b00",
+                        "surface": "#101419",
+                        "secondary-container": "#414751",
+                        "tertiary-container": "#da9400",
+                        "surface-container-high": "#272a30",
+                        "on-tertiary-fixed": "#291800",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#56a5ff",
+                        "on-secondary-fixed": "#161c24",
+                        "on-error-container": "#ffdad6",
+                        "plasma-blue": "#007AFF",
+                        "on-surface": "#e0e2ea",
+                        "on-error": "#690005",
+                        "on-primary-fixed": "#001c38",
+                        "surface-container": "#1c2025",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "on-tertiary-container": "#4f3300",
+                        "on-secondary-fixed-variant": "#414751",
+                        "on-background": "#e0e2ea",
+                        "glass-stroke": "rgba(255, 255, 255, 0.12)",
+                        "primary-fixed-dim": "#a3c9ff",
+                        "inverse-primary": "#0060aa",
+                        "void-black": "#0A0C10",
+                        "primary-fixed": "#d3e4ff",
+                        "surface-container-lowest": "#0b0e14",
+                        "on-surface-variant": "#c0c7d4",
+                        "primary": "#a3c9ff",
+                        "surface-dim": "#101419"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "stack-md": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "stack-lg": "48px",
+                        "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .plasma-glow {
+            box-shadow: 0 0 30px rgba(0, 122, 255, 0.15);
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-glass-stroke shadow-md shadow-plasma-blue/10">
+<div class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<div class="font-headline-lg text-primary tracking-tighter cursor-pointer active:scale-95 transition-transform">MDtronix Lab</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-primary font-bold border-b-2 border-primary pb-1" href="#">Products</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Services</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-full font-headline-lg text-body-md active:scale-95 transition-transform hover:bg-surface-bright/20">
+                Get Started
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden px-margin-mobile md:px-gutter">
+<div class="absolute inset-0 bg-gradient-to-b from-plasma-blue/5 to-transparent pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg max-w-container-max mx-auto items-center">
+<!-- Text Content -->
+<div class="order-2 lg:order-1 space-y-stack-md text-center lg:text-left z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 glass-card rounded-full">
+<span class="flex text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">4.9/5 RATING</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Nexus AI Hub</h1>
+<p class="font-body-md text-on-surface-variant max-w-lg mx-auto lg:mx-0">
+                        Experience the zenith of domestic automation. The Nexus Hub orchestrates your entire ecosystem with neural processing, delivering a home that anticipates your every move.
+                    </p>
+<div class="flex flex-col sm:flex-row items-center gap-stack-md pt-4 justify-center lg:justify-start">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary">Starting at</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">₹14,999</span>
+</div>
+<div class="flex gap-4 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial shimmer-btn bg-plasma-blue text-white px-8 py-4 rounded-xl font-headline-lg text-body-md hover:brightness-110 transition-all active:scale-95 shadow-lg shadow-plasma-blue/20">
+                                Pre-order Now
+                            </button>
+<button class="flex-1 sm:flex-initial glass-card px-8 py-4 rounded-xl font-headline-lg text-body-md text-on-surface hover:bg-surface-bright/20 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                Watch
+                            </button>
+</div>
+</div>
+</div>
+<!-- Product Carousel Simulator -->
+<div class="order-1 lg:order-2 relative z-10" id="carousel">
+<div class="relative aspect-square max-w-[500px] mx-auto group">
+<div class="absolute -inset-10 bg-plasma-blue/20 rounded-full blur-[80px] animate-pulse"></div>
+<div class="glass-card rounded-[2rem] overflow-hidden p-4 relative h-full">
+<img alt="Nexus Hub" class="w-full h-full object-cover rounded-2xl transition-opacity duration-500" id="carousel-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuaPABTShFOeZMsTrYjOmttlvVOzQXvn6kkfxW7O4JmbWHeNc8j7TfDOboC4nTgUDeuEyh35Tv2E5A7BEg6RTaFeLplSd5uIKMtl74suyMVPujZQq44uX5oeJoQNdAWVFOtFoXlDstspRbju-o0Dki6u_FLMSHVM8jmHUbq5F39LU_4BnVtPvUC0ES4FYcF6VM7HnIV41nFWf2ZCps89tpUEp0ig5e8aouOLPu4V7ahEos-QNBmVq-Uxa4nml0vD0ZBg9VrAekZ0tp"/>
+<!-- Carousel Navigation -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+<button class="w-12 h-1 bg-primary rounded-full transition-all duration-300 carousel-dot" onclick="updateCarousel(0)"></button>
+<button class="w-3 h-1 bg-white/30 rounded-full transition-all duration-300 carousel-dot" onclick="updateCarousel(1)"></button>
+<button class="w-3 h-1 bg-white/30 rounded-full transition-all duration-300 carousel-dot" onclick="updateCarousel(2)"></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Features Section -->
+<section class="py-stack-lg px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Precision Engineered Intelligence</h2>
+<p class="font-body-md text-on-surface-variant">The future of domestic control is not just automated; it's intuitive.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Card 1 -->
+<div class="glass-card p-stack-md rounded-[2rem] hover:border-primary/50 transition-colors group">
+<div class="w-14 h-14 rounded-2xl bg-plasma-blue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-plasma-blue text-3xl">psychology</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Neural Automation</h3>
+<p class="font-body-md text-on-surface-variant">Advanced machine learning patterns that understand your daily routines to optimize energy and comfort before you even ask.</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-stack-md rounded-[2rem] hover:border-primary/50 transition-colors group relative overflow-hidden">
+<div class="w-14 h-14 rounded-2xl bg-plasma-blue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-plasma-blue text-3xl">layers</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Holographic Control</h3>
+<p class="font-body-md text-on-surface-variant">A translucent glass interface that provides a multi-dimensional view of your entire smart ecosystem in real-time.</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-stack-md rounded-[2rem] hover:border-primary/50 transition-colors group">
+<div class="w-14 h-14 rounded-2xl bg-plasma-blue/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-plasma-blue text-3xl">bolt</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg-mobile text-on-surface mb-2">Zero-Latency Response</h3>
+<p class="font-body-md text-on-surface-variant">Local-first processing ensures your commands are executed in under 10ms, maintaining privacy and speed without the cloud.</p>
+</div>
+</div>
+</section>
+<!-- Detailed Description Section -->
+<section class="py-stack-lg bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+<div class="relative rounded-[2.5rem] overflow-hidden border border-glass-stroke shadow-2xl">
+<img class="w-full h-auto" data-alt="A sophisticated home automation hub sits on a luxury kitchen countertop, glowing with a soft blue light as it displays a vibrant energy consumption graph. The environment is sleek, modern, and high-end, featuring dark marble surfaces and minimalist décor. The lighting is low and atmospheric, emphasizing the 'Deep Tech' aesthetic of the device. Professional architectural photography style with shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3KvPoseEvwec8YZKT7biioMvpggK33D7rlRqOuH9j0cvYOADuSJ6nXu17i0z156gc0zMtmtqovs_xkX1sjZE0CCHjeyN4rkMc6Qfe3ifaGkOArtOb4Gw2Dphg-E_S8jnK5Yb7e_oyCXLigR3TfZDfoRmkqMNNd9aMZqLHr_A1SybBGHSW8mYfDdTO90VTh-FoUQjyXHe7F5QRK_npOhdN7lVIwog0J_wMT0pqk7dOw_3qlVVFB3ToXVwyZOsBeLWUEbVgLubHU8Cb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<div class="space-y-6">
+<h2 class="font-headline-xl text-headline-lg text-on-surface">The Brain of Your Future Home</h2>
+<div class="space-y-4 font-body-md text-on-surface-variant">
+<p>The Nexus AI Hub isn't just a controller; it's a sentient architect for your living space. Powered by our proprietary MD-Neural core, it manages thousands of variables across lighting, climate, and security with surgical precision.</p>
+<p>Our commitment to "Intelligence Redefined" means moving beyond simple voice commands. The Nexus Hub senses occupancy, ambient light levels, and even your mood through subtle environmental cues, adjusting the scene to perfection.</p>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                256-bit Edge Encryption
+                            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                Multi-Protocol Support
+                            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                48-hour Backup Battery
+                            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+                                Adaptive AI Learning
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Specifications -->
+<section class="py-stack-lg px-margin-mobile md:px-gutter max-w-4xl mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg text-on-surface">Technical Specifications</h2>
+<div class="space-y-4">
+<!-- Accordion 1 -->
+<div class="glass-card rounded-2xl overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-bright/10 transition-colors" onclick="toggleAccordion('specs')">
+<span class="font-headline-lg text-body-md font-semibold">Technical Specs</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-specs">expand_more</span>
+</button>
+<div class="hidden p-6 border-t border-glass-stroke" id="content-specs">
+<div class="grid grid-cols-2 gap-y-4 font-body-md">
+<div class="text-on-surface-variant">Dimensions</div>
+<div class="text-on-surface">120mm x 120mm x 45mm</div>
+<div class="text-on-surface-variant">Connectivity</div>
+<div class="text-on-surface">WiFi 6E, Zigbee 3.0, Matter, Thread</div>
+<div class="text-on-surface-variant">Processor</div>
+<div class="text-on-surface">MDtronix Octa-Core NPU (6 TOPS)</div>
+<div class="text-on-surface-variant">Display</div>
+<div class="text-on-surface">5" AMOLED Holographic Glass</div>
+</div>
+</div>
+</div>
+<!-- Accordion 2 -->
+<div class="glass-card rounded-2xl overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-bright/10 transition-colors" onclick="toggleAccordion('security')">
+<span class="font-headline-lg text-body-md font-semibold">Security &amp; Privacy</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-security">expand_more</span>
+</button>
+<div class="hidden p-6 border-t border-glass-stroke" id="content-security">
+<p class="font-body-md text-on-surface-variant mb-4">Your home data never leaves your home. The Nexus Hub operates on a 'Zero-Cloud' architecture by default.</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="font-body-md">End-to-End Hardware Encryption</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">visibility_off</span>
+<span class="font-body-md">No External Server Audio Recording</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Accordion 3 -->
+<div class="glass-card rounded-2xl overflow-hidden">
+<button class="w-full flex justify-between items-center p-6 text-left hover:bg-surface-bright/10 transition-colors" onclick="toggleAccordion('comp')">
+<span class="font-headline-lg text-body-md font-semibold">Compatibility</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-comp">expand_more</span>
+</button>
+<div class="hidden p-6 border-t border-glass-stroke" id="content-comp">
+<div class="flex flex-wrap gap-4">
+<span class="px-4 py-2 bg-surface-bright/20 rounded-lg font-label-sm text-label-sm">Apple HomeKit</span>
+<span class="px-4 py-2 bg-surface-bright/20 rounded-lg font-label-sm text-label-sm">Google Home</span>
+<span class="px-4 py-2 bg-surface-bright/20 rounded-lg font-label-sm text-label-sm">Amazon Alexa</span>
+<span class="px-4 py-2 bg-surface-bright/20 rounded-lg font-label-sm text-label-sm">Samsung SmartThings</span>
+<span class="px-4 py-2 bg-surface-bright/20 rounded-lg font-label-sm text-label-sm">Home Assistant</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Testimonials -->
+<section class="py-stack-lg px-margin-mobile md:px-gutter bg-gradient-to-t from-void-black to-background">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="glass-card p-8 rounded-3xl relative">
+<span class="material-symbols-outlined text-primary text-5xl opacity-20 absolute top-4 right-8">format_quote</span>
+<p class="font-body-md text-on-surface mb-6 relative z-10 italic">"The Nexus Hub changed how my family lives. It's not just a gadget; it's a member of the house that actually makes things easier."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center font-bold text-primary">RK</div>
+<div>
+<h4 class="font-headline-lg text-body-md font-bold">Rohan K.</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Luxury Villa Owner</p>
+</div>
+</div>
+</div>
+<div class="glass-card p-8 rounded-3xl relative">
+<span class="material-symbols-outlined text-primary text-5xl opacity-20 absolute top-4 right-8">format_quote</span>
+<p class="font-body-md text-on-surface mb-6 relative z-10 italic">"Zero latency is a game changer. The holographic UI is stunning, but it's the sheer speed of response that blows my mind."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center font-bold text-primary">AM</div>
+<div>
+<h4 class="font-headline-lg text-body-md font-bold">Anya M.</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Tech Journalist</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-void-black w-full py-stack-lg border-t border-glass-stroke mt-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-md px-gutter max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-primary mb-4">MDtronix Lab</div>
+<p class="font-body-md text-on-surface-variant text-sm">Intelligence Redefined. Building the next generation of smart living.</p>
+</div>
+<div class="space-y-3">
+<h5 class="font-headline-lg text-body-md font-bold text-on-surface">Products</h5>
+<ul class="space-y-2">
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Nexus Hub</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sensors</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Lighting</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h5 class="font-headline-lg text-body-md font-bold text-on-surface">Legal</h5>
+<ul class="space-y-2">
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Installation Guide</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h5 class="font-headline-lg text-body-md font-bold text-on-surface">Support</h5>
+<ul class="space-y-2">
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">FAQs</a></li>
+<li><a class="font-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Community</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter mt-stack-lg pt-stack-md border-t border-glass-stroke/50 text-center">
+<p class="font-body-md text-on-surface-variant text-sm">© 2024 MDtronix Lab. Intelligence Redefined.</p>
+</div>
+</footer>
+<script>
+        // Carousel Logic
+        const carouselImages = ["https://lh3.googleusercontent.com/aida-public/AB6AXuAuaPABTShFOeZMsTrYjOmttlvVOzQXvn6kkfxW7O4JmbWHeNc8j7TfDOboC4nTgUDeuEyh35Tv2E5A7BEg6RTaFeLplSd5uIKMtl74suyMVPujZQq44uX5oeJoQNdAWVFOtFoXlDstspRbju-o0Dki6u_FLMSHVM8jmHUbq5F39LU_4BnVtPvUC0ES4FYcF6VM7HnIV41nFWf2ZCps89tpUEp0ig5e8aouOLPu4V7ahEos-QNBmVq-Uxa4nml0vD0ZBg9VrAekZ0tp", "https://lh3.googleusercontent.com/aida-public/AB6AXuBrdU6Ua7NERry7jEZvdR1zKFp4mNgCJrxSWc15mQq4ndYI-GT1kid5InyFWHaEje0vxRZYYU5HRn6O1WyWvBNYLwoKOVpaSFUv5YiJpt_SUna4luoe1eNjCPFN3OcW8hvci146gS0N_jck2V6x3A8HdLL_6mgeF-lW_ss_6BJEopHEu0AHt9LJOml_eGPaDN_iGkH23zj9grHWScA5YhUUvC_RyAXvxXwFTUXM1mPk5yWv0Xxzgs6kAgDg8QJhkFuTuRbgwZzfHIqC", "https://lh3.googleusercontent.com/aida-public/AB6AXuC3KvPoseEvwec8YZKT7biioMvpggK33D7rlRqOuH9j0cvYOADuSJ6nXu17i0z156gc0zMtmtqovs_xkX1sjZE0CCHjeyN4rkMc6Qfe3ifaGkOArtOb4Gw2Dphg-E_S8jnK5Yb7e_oyCXLigR3TfZDfoRmkqMNNd9aMZqLHr_A1SybBGHSW8mYfDdTO90VTh-FoUQjyXHe7F5QRK_npOhdN7lVIwog0J_wMT0pqk7dOw_3qlVVFB3ToXVwyZOsBeLWUEbVgLubHU8Cb"];
+        let currentSlide = 0;
+
+        function updateCarousel(index) {
+            currentSlide = index;
+            const img = document.getElementById('carousel-img');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = carouselImages[index];
+                img.style.opacity = '1';
+            }, 300);
+
+            dots.forEach((dot, i) => {
+                if(i === index) {
+                    dot.classList.remove('w-3', 'bg-white/30');
+                    dot.classList.add('w-12', 'bg-primary');
+                } else {
+                    dot.classList.remove('w-12', 'bg-primary');
+                    dot.classList.add('w-3', 'bg-white/30');
+                }
+            });
+        }
+
+        // Auto-advance carousel
+        setInterval(() => {
+            let next = (currentSlide + 1) % carouselImages.length;
+            updateCarousel(next);
+        }, 6000);
+
+        // Accordion Logic
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            const isOpen = !content.classList.contains('hidden');
+            
+            // Close others (optional, but clean)
+            document.querySelectorAll('[id^="content-"]').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('[id^="icon-"]').forEach(el => el.classList.remove('rotate-180'));
+
+            if (!isOpen) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            }
+        }
+
+        // Parallax/Hover effect for Feature Cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

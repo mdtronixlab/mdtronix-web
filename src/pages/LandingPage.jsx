@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import heroBg from "../assets/hero.png";
+import laptopRepairImg from "../assets/laptop_repair.png";
 
 export default function LandingPage() {
   return (
@@ -31,12 +32,19 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-wrap gap-stack-sm pt-4">
               <Link
-                to="/expertise"
+                to="/services"
                 className="bg-plasma-blue text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-plasma-blue/20 hover:-translate-y-1 active:scale-95 transition-all text-center"
               >
                 Explore Solutions
               </Link>
-              <button className="glass-card text-on-surface px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-bright/20 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2">
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("services")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="glass-card text-on-surface px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-bright/20 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2"
+              >
                 <span className="material-symbols-outlined">play_circle</span>
                 Watch Demo
               </button>
@@ -74,18 +82,20 @@ export default function LandingPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-stack-lg px-gutter max-w-container-max mx-auto">
+      <section
+        id="services"
+        className="py-stack-lg px-gutter max-w-container-max mx-auto"
+      >
         <div className="text-center mb-stack-lg">
           <h2 className="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-stack-sm">
             What We Do
           </h2>
           <p className="text-on-surface-variant max-w-2xl mx-auto">
-            From smart home automation to custom embedded hardware — we
-            engineer technology that solves real problems.
+            From smart home automation to custom embedded hardware — we engineer
+            technology that solves real problems.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
           {/* Smart Home */}
           <div className="glass-card p-8 rounded-3xl group hover:bg-surface-container hover:-translate-y-2 transition-all duration-300">
             <div className="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all">
@@ -95,8 +105,8 @@ export default function LandingPage() {
             </div>
             <h3 className="font-headline-lg text-2xl mb-4">Smart Home</h3>
             <p className="text-on-surface-variant mb-6">
-              Full home automation — lighting, climate, appliances, and
-              security unified under one intelligent system.
+              Full home automation — lighting, climate, appliances, and security
+              unified under one intelligent system.
             </p>
             <img
               className="w-full h-40 object-cover rounded-xl group-hover:brightness-110 transition-all"
@@ -126,15 +136,21 @@ export default function LandingPage() {
             />
             <ul className="space-y-4">
               <li className="flex items-center gap-3 text-sm text-on-surface-variant transition-transform group-hover:translate-x-1">
-                <span className="material-symbols-outlined text-primary text-lg">check_circle</span>
+                <span className="material-symbols-outlined text-primary text-lg">
+                  check_circle
+                </span>
                 Schematic &amp; PCB Design
               </li>
               <li className="flex items-center gap-3 text-sm text-on-surface-variant transition-transform group-hover:translate-x-1">
-                <span className="material-symbols-outlined text-primary text-lg">check_circle</span>
+                <span className="material-symbols-outlined text-primary text-lg">
+                  check_circle
+                </span>
                 Firmware Development
               </li>
               <li className="flex items-center gap-3 text-sm text-on-surface-variant transition-transform group-hover:translate-x-1">
-                <span className="material-symbols-outlined text-primary text-lg">check_circle</span>
+                <span className="material-symbols-outlined text-primary text-lg">
+                  check_circle
+                </span>
                 Prototype to Production
               </li>
             </ul>
@@ -162,7 +178,7 @@ export default function LandingPage() {
           </div>
 
           {/* CCTV Installation */}
-          <div className="glass-card p-8 rounded-3xl group hover:bg-surface-container hover:-translate-y-2 transition-all duration-300">
+          <div className="glass-card p-8 rounded-3xl overflow-hidden group hover:bg-surface-container hover:-translate-y-2 transition-all duration-300">
             <div className="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all">
               <span className="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">
                 videocam
@@ -183,7 +199,7 @@ export default function LandingPage() {
           </div>
 
           {/* Chip Level Laptop Service */}
-          <div className="glass-card p-8 rounded-3xl group hover:bg-surface-container hover:-translate-y-2 transition-all duration-300">
+          <div className="glass-card p-8 rounded-3xl overflow-hidden group hover:bg-surface-container hover:-translate-y-2 transition-all duration-300">
             <div className="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all">
               <span className="material-symbols-outlined text-primary text-3xl transition-transform group-hover:rotate-12">
                 build
@@ -192,32 +208,37 @@ export default function LandingPage() {
             <h3 className="font-headline-lg text-2xl mb-4">
               Chip Level Laptop Service
             </h3>
-            <p className="text-on-surface-variant">
+            <p className="text-on-surface-variant mb-6">
               Deep hardware repair — motherboard diagnostics, BGA rework, and
               component-level fault resolution for all laptop brands.
             </p>
+            <img
+              className="w-full h-40 object-cover rounded-xl group-hover:brightness-110 transition-all"
+              src={laptopRepairImg}
+              alt="Laptop repair"
+            />
           </div>
 
           {/* Web / App / Mobile Development — full width */}
           <div className="glass-card p-8 rounded-3xl group hover:bg-surface-container hover:-translate-y-2 transition-all duration-300 md:col-span-3 flex flex-col md:flex-row items-center gap-8">
-            <div className="md:w-1/2">
-              <div className="w-14 h-14 bg-surface-container-high rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <span className="material-symbols-outlined text-primary text-3xl">
-                  devices
-                </span>
-              </div>
-              <h3 className="font-headline-lg text-2xl mb-4">
-                Web, App &amp; Mobile Development
-              </h3>
+            <div className="md:w-1/2 w-full">
               <p className="text-on-surface-variant mb-6">
-                End-to-end digital products — responsive websites, web apps,
-                and cross-platform mobile apps tailored to your business.
+                End-to-end digital products — responsive websites, web apps, and
+                cross-platform mobile apps tailored to your business.
               </p>
               <div className="flex flex-wrap gap-3">
-                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">Website</span>
-                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">Web App</span>
-                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">Mobile App</span>
-                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">UI/UX Design</span>
+                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">
+                  Website
+                </span>
+                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">
+                  Web App
+                </span>
+                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">
+                  Mobile App
+                </span>
+                <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/30 text-primary text-sm font-medium">
+                  UI/UX Design
+                </span>
               </div>
             </div>
             <div className="md:w-1/2 w-full">
@@ -227,26 +248,97 @@ export default function LandingPage() {
                   <span className="w-3 h-3 rounded-full bg-red-500/70"></span>
                   <span className="w-3 h-3 rounded-full bg-yellow-500/70"></span>
                   <span className="w-3 h-3 rounded-full bg-green-500/70"></span>
-                  <span className="ml-3 text-xs text-on-surface-variant">index.html</span>
+                  <span className="ml-3 text-xs text-on-surface-variant">
+                    index.html
+                  </span>
                 </div>
                 {/* Code lines */}
                 <div className="bg-surface-container px-5 py-4 space-y-1 leading-6">
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">1</span><span className="text-blue-400">&lt;!DOCTYPE </span><span className="text-primary">html</span><span className="text-blue-400">&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">2</span><span className="text-blue-400">&lt;html</span> <span className="text-yellow-400">lang</span><span className="text-on-surface/70">=</span><span className="text-green-400">"en"</span><span className="text-blue-400">&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">3</span><span className="text-blue-400 ml-4">&lt;head&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">4</span><span className="ml-8 text-blue-400">&lt;title&gt;</span><span className="text-on-surface">MDtronix</span><span className="text-blue-400">&lt;/title&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">5</span><span className="text-blue-400 ml-4">&lt;/head&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">6</span><span className="text-blue-400 ml-4">&lt;body&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">7</span><span className="ml-8 text-blue-400">&lt;section</span> <span className="text-yellow-400">class</span><span className="text-on-surface/70">=</span><span className="text-green-400">"hero"</span><span className="text-blue-400">&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">8</span><span className="ml-12 text-blue-400">&lt;h1&gt;</span><span className="text-primary">Intelligence Redefined</span><span className="text-blue-400">&lt;/h1&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">9</span><span className="ml-8 text-blue-400">&lt;/section&gt;</span></div>
-                  <div><span className="text-on-surface-variant/50 select-none mr-4">10</span><span className="text-blue-400 ml-4">&lt;/body&gt;</span></div>
-                  <div className="flex items-center"><span className="text-on-surface-variant/50 select-none mr-4">11</span><span className="text-blue-400">&lt;/html&gt;</span><span className="inline-block w-2 h-4 bg-primary/80 ml-1 animate-pulse"></span></div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      1
+                    </span>
+                    <span className="text-blue-400">&lt;!DOCTYPE </span>
+                    <span className="text-primary">html</span>
+                    <span className="text-blue-400">&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      2
+                    </span>
+                    <span className="text-blue-400">&lt;html</span>{" "}
+                    <span className="text-yellow-400">lang</span>
+                    <span className="text-on-surface/70">=</span>
+                    <span className="text-green-400">"en"</span>
+                    <span className="text-blue-400">&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      3
+                    </span>
+                    <span className="text-blue-400 ml-4">&lt;head&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      4
+                    </span>
+                    <span className="ml-8 text-blue-400">&lt;title&gt;</span>
+                    <span className="text-on-surface">MDtronix</span>
+                    <span className="text-blue-400">&lt;/title&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      5
+                    </span>
+                    <span className="text-blue-400 ml-4">&lt;/head&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      6
+                    </span>
+                    <span className="text-blue-400 ml-4">&lt;body&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      7
+                    </span>
+                    <span className="ml-8 text-blue-400">&lt;section</span>{" "}
+                    <span className="text-yellow-400">class</span>
+                    <span className="text-on-surface/70">=</span>
+                    <span className="text-green-400">"hero"</span>
+                    <span className="text-blue-400">&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      8
+                    </span>
+                    <span className="ml-12 text-blue-400">&lt;h1&gt;</span>
+                    <span className="text-primary">Intelligence Redefined</span>
+                    <span className="text-blue-400">&lt;/h1&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      9
+                    </span>
+                    <span className="ml-8 text-blue-400">&lt;/section&gt;</span>
+                  </div>
+                  <div>
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      10
+                    </span>
+                    <span className="text-blue-400 ml-4">&lt;/body&gt;</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-on-surface-variant/50 select-none mr-4">
+                      11
+                    </span>
+                    <span className="text-blue-400">&lt;/html&gt;</span>
+                    <span className="inline-block w-2 h-4 bg-primary/80 ml-1 animate-pulse"></span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </section>
     </main>

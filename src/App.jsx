@@ -3,8 +3,8 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
 import LandingPage from './pages/LandingPage'
-import NexusHubPage from './pages/ProductPage'
-import ExpertisePage from './pages/ExpertisePage'
+import ProductsPage from './pages/ProductPage'
+import ServicesPage from './pages/ServicesPage'
 import CalculatorPage from './pages/CalculatorPage'
 
 export default function App() {
@@ -13,8 +13,8 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/products" element={<NexusHubPage />} />
-        <Route path="/expertise" element={<ExpertisePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/calculator" element={<CalculatorPage />} />
       </Routes>
       <Footer />

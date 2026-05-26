@@ -71,7 +71,7 @@ export default function Footer() {
           <h4 className="font-bold text-on-surface mb-6">Social</h4>
           <div className="flex gap-4">
             <a
-              href="https://instagram.com/mdtronixlab"
+              href="https://www.instagram.com/mdtronix.in?igsh=MTdncTRlMXIzejl2NQ=="
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
@@ -97,7 +97,7 @@ export default function Footer() {
       </div>
       <div className="max-w-container-max mx-auto px-gutter mt-stack-lg pt-8 border-t border-glass-stroke/50 text-center">
         <p className="text-on-surface-variant text-sm">
-          © 2024 MDtronix Lab. Intelligence Redefined.
+          © 2025 MDtronix Lab. Intelligence Redefined.
         </p>
       </div>
     </footer>

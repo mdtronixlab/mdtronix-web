@@ -2,7 +2,7 @@
   {
     "id": "water-tank",
     "badge": "Smart Product",
-    "title": "Water Tank Level Controller",
+    "title": "Water Tank Level Controller PRO",
     "description": "A compact, intelligent module that automates your water pump — keeping your tank full, your motor safe, and your phone informed.",
     "features": [
       { "icon": "water", "label": "Precision Level Display" },

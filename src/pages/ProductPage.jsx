@@ -2,9 +2,15 @@ import ProductCard from '../components/ProductCard'
 import WaterLevelVisual from '../components/WaterLevelVisual'
 import PRODUCTS from '../data/products.json'
 
-// Map product IDs to their interactive visual components
 const VISUALS = {
   'water-tank': WaterLevelVisual,
+}
+
+const WHATSAPP = '918088377441'
+
+function handleOrder(title) {
+  const msg = encodeURIComponent(`Hi, I'm interested in ordering the ${title}. Please share more details.`)
+  window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, '_blank', 'noopener')
 }
 
 export default function ProductsPage() {
@@ -27,13 +33,15 @@ export default function ProductsPage() {
       {/* Products grid */}
       <section className="px-gutter pb-stack-lg max-w-container-max mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {PRODUCTS.map(({ id, ...props }) => {
+          {PRODUCTS.map(({ id, title, ...props }) => {
             const Visual = VISUALS[id]
             return (
               <ProductCard
                 key={id}
+                title={title}
                 {...props}
                 visual={Visual ? <Visual /> : undefined}
+                onOrder={() => handleOrder(title)}
               />
             )
           })}

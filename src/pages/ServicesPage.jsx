@@ -260,7 +260,7 @@ export default function ServicesPage() {
               </ul>
 
               <a
-                href="https://wa.me/919567622353"
+                href="https://wa.me/8088377441"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`self-start flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold border ${svc.ring} ${svc.accent} bg-surface-container-high hover:bg-surface-container-highest active:scale-95 transition-all`}
@@ -282,7 +282,7 @@ export default function ServicesPage() {
             Describe your problem or project — we'll find the right solution for you.
           </p>
           <a
-            href="https://wa.me/919567622353"
+            href="https://wa.me/8088377441"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 bg-plasma-blue text-white px-8 py-3.5 rounded-xl font-bold text-sm hover:brightness-110 hover:-translate-y-0.5 active:scale-95 transition-all shadow-lg shadow-plasma-blue/20"

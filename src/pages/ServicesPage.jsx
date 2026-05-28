@@ -1,4 +1,7 @@
 import laptopRepairImg from '../assets/laptop_repair.png'
+import smarthomeImg from '../assets/smarthome.png'
+import embeddedImg from '../assets/embedded.png'
+import cctvImg from '../assets/cctv.png'
 
 const services = [
   {
@@ -16,7 +19,7 @@ const services = [
       { icon: 'router', label: 'Centralised hub setup' },
       { icon: 'phone_android', label: 'Remote app control' },
     ],
-    image: '/src/assets/smarthome.png',
+    localImage: smarthomeImg,
     color: 'from-cyan-500/20 to-blue-600/10',
     accent: 'text-cyan-400',
     ring: 'ring-cyan-500/30',
@@ -35,8 +38,8 @@ const services = [
       { icon: 'wifi', label: 'IoT connectivity (Wi-Fi, BLE)' },
       { icon: 'factory', label: 'Prototype to production' },
       { icon: 'bug_report', label: 'Hardware debugging & testing' },
-    ],
-    image: '/src/assets/embedded.png',
+      ],
+    localImage: embeddedImg,
     color: 'from-violet-500/20 to-purple-600/10',
     accent: 'text-violet-400',
     ring: 'ring-violet-500/30',
@@ -76,7 +79,7 @@ const services = [
       { icon: 'night_sight_auto', label: 'Night vision coverage' },
       { icon: 'construction', label: 'Full installation & cabling' },
     ],
-    image: '/src/assets/cctv.png',
+    localImage: cctvImg,
     color: 'from-emerald-500/20 to-green-600/10',
     accent: 'text-emerald-400',
     ring: 'ring-emerald-500/30',
